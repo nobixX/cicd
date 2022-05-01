@@ -15,8 +15,8 @@
         ci:
           ipv4_address: 172.20.0.5
 
-      # ports:
-      #   - 3000:3000
+      ports:
+        - 80:3000
         # - 2222:22
 
       labels:
