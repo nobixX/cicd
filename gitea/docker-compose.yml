@@ -1,7 +1,7 @@
   version: "3.7"
 
   services:
-    gitea:
+    gitea.com:
       image: gitea/gitea
       container_name: "gitea"
       restart: "unless-stopped"
@@ -28,7 +28,7 @@
         - "traefik.http.middlewares.test-auth.basicauth.users=shankar:$$apr1$$jwFDr9ud$$GKf3mO2BuMUFVHHmwkhM//"
         - "traefik.docker.network=gitea_ci"
 
-    drone-server:
+    drone.in:
       image: drone/drone:2
       volumes:
         - ./droneserver:/var/lib/drone
