@@ -28,6 +28,15 @@
         # - "traefik.http.middlewares.test-auth.basicauth.users=shankar:$$apr1$$jwFDr9ud$$GKf3mO2BuMUFVHHmwkhM//"
         - "traefik.docker.network=gitea_ci"
 
+
+      # healthcheck:
+
+        #   - test: ["CMD- SHELL", "/bin/s6-svok", "/etc/s6/gitea || exit 1"]
+        #   - interval: 30s
+        #   - timeout: 3s
+        #   - retries: 3
+        #   - start_peroid: 10s  
+
     drone.in:
       image: drone/drone:2
       volumes:
@@ -94,6 +103,7 @@
 
   networks:
     ci:
+      driver: bridge
       # external: true
       # ipam:
       #   config:
