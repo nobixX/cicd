@@ -7,13 +7,17 @@
       restart: "unless-stopped"
 
       volumes:
-        - ./gitea:/data
+        - ./gitea:/dataobixX/cicd
         - /etc/timezone:/etc/timezone:ro
         - /etc/localtime:/etc/localtime:ro
     
       networks:
         ci:
           ipv4_address: 172.20.0.5
+
+      ports:
+        - 3000:3000
+        # - 2222:22
 
       labels:
         - "traefik.enable=true"
@@ -47,6 +51,10 @@
         ci:
           ipv4_address: 172.20.0.6
 
+      ports:
+        - 80:80
+        # - 2222:22
+
       labels:
         - "traefik.enable=true"
         - "traefik.http.routers.drone-server.rule=Host(`drone.in`)"
@@ -77,6 +85,11 @@
         - "traefik.http.routers.drone-runner.entrypoints=web,websecure"
         - "traefik.http.services.drone-runner.loadbalancer.server.port=3000"
         - "traefik.docker.network=gitea_ci"
+
+
+      ports:
+        - 3001:3000
+        # - 2222:22
 
 
   networks:
