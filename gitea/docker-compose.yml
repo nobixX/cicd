@@ -12,8 +12,8 @@
         - /etc/localtime:/etc/localtime:ro
     
       networks:
-        ci:
-          ipv4_address: 172.20.0.5
+        - ci
+          # ipv4_address: 172.20.0.5
 
       # ports:
       #   - 3000:3000
@@ -48,8 +48,8 @@
         - .env
 
       networks:
-        ci:
-          ipv4_address: 172.20.0.6
+        - ci
+          # ipv4_address: 172.20.0.6
 
       # ports:
       #   - 80:80
@@ -77,8 +77,8 @@
 
       restart: unless-stopped
       networks:
-        ci:
-          ipv4_address: 172.20.0.7
+        - ci
+          # ipv4_address: 172.20.0.7
 
       labels:
         - "traefik.enable=true"
@@ -95,6 +95,6 @@
   networks:
     ci:
       # external: true
-      ipam:
-        config:
-          - subnet: 172.20.0.0/24
+      # ipam:
+      #   config:
+      #     - subnet: 172.20.0.0/24
