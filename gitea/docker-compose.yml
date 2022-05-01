@@ -15,8 +15,8 @@
         ci:
           ipv4_address: 172.20.0.5
 
-      ports:
-        - 3000:3000
+      # ports:
+      #   - 3000:3000
         # - 2222:22
 
       labels:
@@ -51,8 +51,8 @@
         ci:
           ipv4_address: 172.20.0.6
 
-      ports:
-        - 80:80
+      # ports:
+      #   - 80:80
         # - 2222:22
 
       labels:
@@ -87,8 +87,8 @@
         - "traefik.docker.network=gitea_ci"
 
 
-      ports:
-        - 3001:3000
+      # ports:
+      #   - 3001:3000
         # - 2222:22
 
 
