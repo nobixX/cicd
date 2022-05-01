@@ -1,0 +1,4 @@
+172.16.16.62    drone.in
+172.16.16.62    gitea.com
+172.16.16.62    traefik.com
+
