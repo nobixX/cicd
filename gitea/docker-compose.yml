@@ -21,7 +21,7 @@
 
       labels:
         - "traefik.enable=true"
-        - "traefik.http.routers.gitea.rule=Host(`gitea.com`)"
+        - "traefik.http.routers.gitea.rule=Host(`gitea.com:3000`)"
         - "traefik.http.routers.gitea.entrypoints=web,websecure"
         - "traefik.http.services.gitea.loadbalancer.server.port=3000"
         # - "traefik.http.routers.gitea.middlewares=test-auth"
