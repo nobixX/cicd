@@ -24,8 +24,8 @@
         - "traefik.http.routers.gitea.rule=Host(`gitea.com`)"
         - "traefik.http.routers.gitea.entrypoints=web,websecure"
         - "traefik.http.services.gitea.loadbalancer.server.port=3000"
-        - "traefik.http.routers.gitea.middlewares=test-auth"
-        - "traefik.http.middlewares.test-auth.basicauth.users=shankar:$$apr1$$jwFDr9ud$$GKf3mO2BuMUFVHHmwkhM//"
+        # - "traefik.http.routers.gitea.middlewares=test-auth"
+        # - "traefik.http.middlewares.test-auth.basicauth.users=shankar:$$apr1$$jwFDr9ud$$GKf3mO2BuMUFVHHmwkhM//"
         - "traefik.docker.network=gitea_ci"
 
     drone.in:
@@ -41,7 +41,7 @@
         - DRONE_SERVER_PROTO=http
         - DRONE_TLS_AUTOCERT=false
         - DRONE_GIT_ALWAYS_AUTH=true
-        - DRONE_GITEA_SERVER=http://gitea.com:3000
+        - DRONE_GITEA_SERVER=http://gitea.com
         - DRONE_RUNNER_NETWORKS=gitea_ci
 
       env_file:
