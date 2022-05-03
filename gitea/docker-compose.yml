@@ -89,11 +89,11 @@
         - ci
           # ipv4_address: 172.20.0.7
 
-      labels:
-        - "traefik.enable=true"
-        - "traefik.http.routers.drone-runner.entrypoints=web,websecure"
-        - "traefik.http.services.drone-runner.loadbalancer.server.port=3000"
-        - "traefik.docker.network=gitea_ci"
+      # labels:
+      #   - "traefik.enable=true"
+      #   - "traefik.http.routers.drone-runner.entrypoints=web,websecure"
+      #   - "traefik.http.services.drone-runner.loadbalancer.server.port=3000"
+      #   - "traefik.docker.network=gitea_ci"
 
 
       # ports:
