@@ -9,37 +9,34 @@
         - "--api.dashboard=true"
         - "--providers.docker=true"
         - "--providers.docker.exposedbydefault=false"
-        - "--entrypoints.web.address=:80"
+        # - "--entrypoints.web.address=:80"
         - "--entrypoints.websecure.address=:443" # new
-        - "--entrypoints.ssh.address=:2222" # new
-        # - "--certificatesresolvers.myresolver.acme.tlschallenge=true" # new
-        # - "--certificatesresolvers.myresolver.acme.email=shankar33cr7@gmail.com" # new
-        # - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json" # new
+        # - "--entrypoints.ssh.address=:2222" # new
+        - "--certificatesresolvers.myresolver.acme.tlschallenge=true" # new
+        - "--certificatesresolvers.myresolver.acme.email=shankar33cr7@gmail.com" # new
+        - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json" # new
 
       labels:
         - "traefik.enable=true"
         - "traefik.http.routers.traefik.rule=Host(`traefik.com`) && (PathPrefix(`/api`) || PathPrefix(`/dashboard`))"
-  #       - "traefik.http.routers.traefik.service=api@internal"
-  #       - "traefik.http.services.traefik.loadbalancer.server.port=8080"
+        - "traefik.http.routers.traefik.service=api@internal"
+        - "traefik.http.services.traefik.loadbalancer.server.port=8080"
+        - "traefik.http.routers.traefik.tls.certresolver=myresolver"
   #       - "traefik.http.routers.traefik.middlewares=test-auth"
         # - "traefik.http.middlewares.test-auth.basicauth.users=shankar:$$apr1$$jwFDr9ud$$GKf3mO2BuMUFVHHmwkhM//"
   #       - "traefik.http.middlewares.my-auth.basicauth.headerField=X-WebAuth-User"
   #       - "traefik.http.middlewares.test-auth.basicauth.removeheader=true"
 
+  
+
       ports:
-        - "80:80"
-        - "8080:8080"
-        # - "443:443" # new
+        # - "80:80"
+        # - "8080:8080"
+        - "443:443" # new
       volumes:
         - "/var/run/docker.sock:/var/run/docker.sock:ro"
-        # - "./letsencrypt:/letsencrypt" # new
+        - "./letsencrypt:/letsencrypt" # new
 
       network_mode: host
 
-      # networks:
-      #   - host
 
-  # networks:
-  #   host:
-  #     name: host
-  #     external: true
