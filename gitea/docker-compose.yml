@@ -53,8 +53,8 @@
         - DRONE_SERVER_PROTO=http
         - DRONE_TLS_AUTOCERT=false
         - DRONE_GIT_ALWAYS_AUTH=true
-        - DRONE_DATABASE_DRIVER=postgres
-        - DRONE_DATABASE_DATASOURCE=postgres://postgres:postgres@db:5432/drone?sslmode=disable
+#         - DRONE_DATABASE_DRIVER=postgres
+#         - DRONE_DATABASE_DATASOURCE=postgres://postgres:postgres@db:5432/drone?sslmode=disable
         - DRONE_GITEA_SERVER=http://gitea.com
         - DRONE_RUNNER_NETWORKS=gitea_ci
 
@@ -100,28 +100,30 @@
         - "traefik.http.services.drone-runner.loadbalancer.server.port=3000"
         - "traefik.docker.network=gitea_ci"
 
-    db:
-        image: postgres
-        environment:
-          - POSTGRES_USER=postgres
-          - POSTGRES_PASSWORD=postgres
-          - POSTGRES_DB=drone
-        
-        volumes:
-          - ./postgres-data:/var/lib/postgresql/data
-          # copy the sql script to create tables
-          - ./sql/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
-          # copy the sql script to fill tables
-          - ./sql/fill_tables.sql:/docker-entrypoint-initdb.d/fill_tables.sql
-
-        healthcheck:
-            test: ["CMD-SHELL", "pg_isready -U postgres"]
-            interval: 5s
-            timeout: 5s
-            retries: 5
       # ports:
       #   - 3001:3000
         # - 2222:22
+
+
+#     db:
+#         image: postgres
+#         environment:
+#           - POSTGRES_USER=postgres
+#           - POSTGRES_PASSWORD=postgres
+#           - POSTGRES_DB=drone
+        
+#         volumes:
+#           - ./postgres-data:/var/lib/postgresql/data
+#           # copy the sql script to create tables
+#           - ./sql/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
+#           # copy the sql script to fill tables
+#           - ./sql/fill_tables.sql:/docker-entrypoint-initdb.d/fill_tables.sql
+
+#         healthcheck:
+#             test: ["CMD-SHELL", "pg_isready -U postgres"]
+#             interval: 5s
+#             timeout: 5s
+#             retries: 5
 
 
   networks:
