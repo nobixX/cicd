@@ -10,8 +10,9 @@
         - "--providers.docker=true"
         - "--providers.docker.exposedbydefault=false"
         - "--entrypoints.web.address=:80"
-        - "--entrypoints.websecure.address=:443" # new
-        - "--entrypoints.ssh.address=:2222" # new
+        - "--entrypoints.web.http.redirections.entrypoint.to=websecure"
+        - "--entrypoints.web.http.redirections.entrypoint.scheme=https"
+        - "--entrypoints.websecure.address=:443"
         # - "--certificatesresolvers.myresolver.acme.tlschallenge=true" # new
         # - "--certificatesresolvers.myresolver.acme.email=shankar33cr7@gmail.com" # new
         # - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json" # new
@@ -29,7 +30,7 @@
       ports:
         - "80:80"
         - "8080:8080"
-        # - "443:443" # new
+        - "443:443" # new
       volumes:
         - "/var/run/docker.sock:/var/run/docker.sock:ro"
         # - "./letsencrypt:/letsencrypt" # new
